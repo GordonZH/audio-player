@@ -1,0 +1,93 @@
+.audio-player{
+    height: 32px;
+    position: absolute;
+    top: 16px;
+    left: 10%;
+    right: 10%;
+    background-color: rgba(149, 150, 155, 0.9);
+    border-radius: 4px;
+    box-shadow: 0 3px 9px 0 #0000004f;
+    display: flex;
+}
+.audio-player audio.audio-instance{
+    display: none;
+}
+.audio-player .player-control-btn{
+    flex: 0 1 12%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.audio-player .player-control-btn span.btn{
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-position: center center;
+}
+.audio-player .player-control-btn.playing span.btn{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACYklEQVR4Xu1bQU4bQRDs9m32Eva4ngs/CHlB7BckvAB4AflB4AfkBTEvsPMC/IOEFwAHz0i+GC72wZYbjWSDIYtnZpNGQtRKPm2Pp6a6p7tsqZgij/f+QES+ElH4kIjcEtGg1WqdV1U1jK3XeF+HiZmHzPwjFxO/BHA8Hu/N5/OfzLy35RADY8xRWZaBFPXHe7+7XC77EUxDY8x+KqZaAlaHv2DmndipROSPtfZTLO5f308mk53pdHqViqkoim4KCbUEOOcuiKiTClpETq21J6nxTeK0MP1FgHMu3PV+DsjQF6y1Zc6anNhQkYvF4nfOmhBrjCljVVBHwBkRHeduxszd3AaUusdoNDph5u+p8es4Zj6qqqq3bV0dAaGzf87dTPMaOOcGRPRFA9NbIUAtKSDgeVk559TYzi3hdbwmJlQAKuAZA5rlhivQkAHNpKAHoAegBzxlQPO+NWwBpIkJPQA9AD0APeAJA5oNB02wIQOaScEUwBTAFMAUwBTYZECz4zYcAvgtoJkUjEGMQYxBjEGMQYzBDQY0Rw50QEMGNJMCHQAdAB0AHQAdAB0AHfDIgObMbSgD8IeIZlIghCCEIIQghCCEIIQghCCEHhjQFB1Qgg0ZeG3LzPs2TXnvOyISfIM5z1273Y6aLHO+cDP2VW1zYePcPqDpGFsToYWp1jkaPLrBEktEH2JZE5FLa+02f3HsK5LeB+vsbDa7TsVUFEUnZpoMG8fM0z1m/rgF4bkx5lvKRkmnjAStzNODCKZfxpjDVEwvErDG4r0/XNnng5c4VMQNEQWrek/LKRoj639iugf0ERR9Pg53pQAAAABJRU5ErkJggg==");
+}
+.audio-player .player-control-btn.pause span.btn{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAED0lEQVR4XuWby2sUQRCHq2Yyu2RPCcku2z2Jf4CneA56E4/xqiSECOrBxEMU8YH4BBVfGOPB+MhBQ0QvKnjRgyg5iCgIehAiaMSdBReJ+MDgOinpMIsR43ZP9yaZ2ZnTwlTV1O+bntp+IiT8woTrB2UApVKJl8vlXQDQQURfAeA9AEy4rjseZ4hKAIrFYh8RXV1IKBF5lmWdZYydiiMIKYBCodCJiBMycUT0AhE3cM5fy2yjdF8FwAQidqokTURlADjOOT+CiOJ35K+qAEqlEiuXy56GiteI2MsYe6rhu6QuVQEUCoUuRLxtkNFp3/f3t7e3/zCIsaiuVQF4nrcFAC4aZjAFAN2cc2kdMXyOlrusBfQj4nmtyP86jTiOszObzYq/0MhcMgADiDhUq2yJqAgAva7rPqhVTNM4SwpgXrLXM5nM9qampmlTAab+ywVA5P0REfsZY7dMRZj4LyeASt73ELGPMVYyEaLrGwUAQETTlmXtYIyN6grR9YsEgHnJP0ylUj2tra0FXUFh/aIGQOT/jYj2cM4vICKFFRTWPooA5jQQ0RPbtjfm8/m3YUWFsY8sgADCDAAc5JyfRMTZMMJUbSMNoCJCDLVt2+7J5/OvVIWp2sUCQNAaKkPto4j4U1WgzC42AOa1hslg4uW5TJzK/dgBCESJenDO9/19pkPtuAKovFzjoXbcAcyVBwC4pDvUrgcAlX6D1lBbBqCWEyIqNakWNtfS6XR/S0vLF5Vg9QhA9CI927bXqfQbZABqOiOk8kZqZUNEH4ioo62t7VO1mHULIBA9xjnvNgEQxxrwl95UKtVWbXhd7y1A1IP1ruve+V8rSAKALtd17+oCiP0n4DgOz2azoo+w4FXXLYCIRl3X3WRSBGP7NwgA7xobG1c1Nzd/NgEQ109gqqGhYW0ul5uU9Stkn0AcAYw7jrNVdQ1SBiA2n4DuumO9ALjsOM6g6luf/1nEHUBiJ0TElNiQ7/t7EzclRkSJnRT9BQAnGGOHkzgt/tKyLLFMlqyFESKaQcRDjDGxNObLOjU69yP7LyAWRx3H6cnlcm90hKn6RBHA92B5fDiJy+PJ3CBBRJ8tyxpM6haZxG6SEtvkBhhjN1UL1mLYLVcRHMtkMgOJ2yipO2RdjDdfiVm1BRSLxW1ENFyjBK6k0+lB1TW7Gj1TGkYG4L9nhaSR/xgYD1lDPCu0qawGrEXE+6GjBg5EdHJ2dvaA6ZBV9/kqflUBeJ7XCgA6e3jFwakezvkzlSSW06YqAJGY53mPAGCNSpLBoaljnHOxkyv+h6YCAKsB4LEMQN0emwsgbAaAkYUgBAcnzzDGTssgRfG+9BOoJO153goi2o2IK4Ojs6K6i6OzN6IoTDUnZQCqAeNml3gAvwGfPOpQxGea0QAAAABJRU5ErkJggg==");
+}
+
+.audio-player .player-bar{
+    flex: 1 1 88%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.audio-player .player-bar .player-bar-warp{
+    flex: 0 1 70%;
+    height: 6px;
+    background-color: rgb(160,165,168);
+    border-radius: 3px;
+    position: relative;
+}
+.audio-player .player-bar .player-bar-warp .player-progress-bar,
+.audio-player .player-bar .player-bar-warp .player-loading-bar{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.audio-player .player-bar .player-bar-warp .player-progress-bar{
+    width: 0;
+    background-color: rgb(223,53,55);
+    z-index: 20;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.audio-player .player-bar .player-bar-warp .player-loading-bar{
+    width: 0;
+    background-color: rgb(194,196,198);
+    z-index: 10;
+    border-radius: 3px;
+    transition: all linear 1s;
+}
+.audio-player .player-bar .player-bar-warp .player-progress-btn{
+    position: absolute;
+    right: -10px;
+    height: 14px;
+    width: 14px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 4px solid white;
+    background-color: rgb(223,53,55);
+    z-index: 30;
+    transform: translateY(-4px);
+    transition: all linear 200ms;
+}
+.audio-player .player-bar .player-now-time,
+.audio-player .player-bar .player-total-time{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex: 0 1 15%;
+    color: white;
+    font-size: .8rem;
+    margin: 0 10px;
+}

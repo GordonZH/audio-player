@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html5-audio-player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./css/audio-player.css">
+    <style>
+    	* {
+			margin: 0;
+    	}
+		.warpper{
+			padding: 16px;
+		}
+    </style>
+</head>
+<body>
+	<div class="warpper">
+		<div class="audio-player">
+             <audio class="audio-instance" src="./test.mp3"></audio>
+             <div class="player-control-btn pause">
+                 <span class="btn"></span>
+             </div>
+             <div class="player-bar">
+                  <span class="player-now-time">00:00</span>
+                  <div class="player-bar-warp">
+                    <div class="player-progress-bar">
+                        <div class="player-progress-btn"></div>
+                    </div>
+                    <div class="player-loading-bar"></div>
+                  </div>
+                  <span class="player-total-time">00:00</span>
+             </div>
+         </div>	
+	</div>
+	<script src="./js/audio-player.js"></script>
+	<script>
+		new Player(); 
+	</script>
+</body>
+</html>
