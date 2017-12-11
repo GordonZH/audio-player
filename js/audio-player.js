@@ -119,12 +119,18 @@
             deviationX = touchObj.clientX - thumbBtnStartX,
             add =  deviationX/totalLength,
             percent = (add+playedTimePercent)*100,
-            moveToTime =  player.attrs.audio.duration*percent/100;
+            moveToTime;
 
     	// let the progressbar follow finger
+    	// limit the edge of the progressbar
+    	percent = percent > 100 ? 100 : percent;
+		percent = percent < 0 ? 0 : percent;
+		moveToTime =  player.attrs.audio.duration*percent/100
+
+		// set percent
         player.attrs.progressBar.style.width = percent+'%';
 
-        // let the playing time follow finger
+        // set playing time
         player.attrs.nowTime.innerHTML = secToMin(moveToTime);
 
 	});
