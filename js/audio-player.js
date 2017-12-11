@@ -4,15 +4,15 @@
  function Player(warpper) {
 
 	this.attrs = {
-        audio : document.querySelector('.audio-player .audio-instance'),
-        playBtn : document.querySelector('.audio-player .player-control-btn'),
-        progressBar : document.querySelector('.audio-player .player-progress-bar'),
-        loadingBar : document.querySelector('.audio-player .player-loading-bar'),
-        thumbBtn : document.querySelector('.audio-player .player-progress-btn'),
+		audio : document.querySelector('.audio-player .audio-instance'),
+		playBtn : document.querySelector('.audio-player .player-control-btn'),
+		progressBar : document.querySelector('.audio-player .player-progress-bar'),
+		loadingBar : document.querySelector('.audio-player .player-loading-bar'),
+		thumbBtn : document.querySelector('.audio-player .player-progress-btn'),
 		nowTime : document.querySelector('.audio-player .player-now-time'),
-        totalTime : document.querySelector('.audio-player .player-total-time'),
-        barWarp : document.querySelector('.audio-player .player-bar-warp')
-    };
+		totalTime : document.querySelector('.audio-player .player-total-time'),
+		barWarp : document.querySelector('.audio-player .player-bar-warp')
+       };
 
 	// utils functions for dom 
 	function hasClass(ele,cls){
@@ -25,7 +25,7 @@
 				blank = (ele_class != '') ? ' ' : '';
 			var added = ele_class + blank + cls;
 			ele.className = added;
-        }
+		}
 	}
 
 	function removeClass(ele,cls) {
@@ -35,7 +35,7 @@
 			var	removed = ele_class.replace(' '+cls+' ', ' ');
 			removed = removed.replace(/(^\s+)|(\s+$)/g, '');
 			ele.className = removed;
-        }
+        	}
 	}
 
 	function secToMin(s) {
@@ -66,7 +66,7 @@
 		}
 	}
 
-    // update uis when playing
+   	// update uis when playing
 	function updateUiByTime() {
 		var audio = player.attrs.audio,
 			buffered = audio.buffered,
@@ -79,7 +79,7 @@
 
 	var player = this;
 
-    // get audio total seconds when loadedmetadata
+   	// get audio total seconds when loadedmetadata
 	player.attrs.audio.addEventListener('loadedmetadata',function (e) {
 		player.attrs.totalTime.innerHTML = secToMin(player.attrs.audio.duration)
 	});
@@ -89,32 +89,33 @@
 
 	// event handlers
 	// just for mobile now
-    player.attrs.playBtn.addEventListener('touchend',togglePlay);
+    	player.attrs.playBtn.addEventListener('touchend',togglePlay);
 
 
-    // variables for recording the coordinate
-    var totalLength = player.attrs.barWarp.offsetWidth,
-        thumbBtnStartX,thumbBtnStartY,
-        playedTimePercent;
+    	// variables for recording the coordinate
+	var totalLength = player.attrs.barWarp.offsetWidth,
+	    thumbBtnStartX,thumbBtnStartY,
+	playedTimePercent;
 
-    // add touchstart touchmove touchend handlers for thumbBtn drag
-    player.attrs.thumbBtn.addEventListener('touchstart',function (e) {
+    	// add touchstart touchmove touchend handlers for thumbBtn drag
+    	player.attrs.thumbBtn.addEventListener('touchstart',function (e) {
 
-    	// remove update handler when drag
+    		// remove update handler when drag
 		player.attrs.audio.removeEventListener('timeupdate',updateUiByTime);
 
 		var touchObj = e.touches[0];
 
 		// record start coordinate
-        thumbBtnStartX = touchObj.clientX;
-        thumbBtnStartY = touchObj.clientY;
+        	thumbBtnStartX = touchObj.clientX;
+        	thumbBtnStartY = touchObj.clientY;
 
-        // compute the percent already played
-        playedTimePercent = player.attrs.audio.currentTime / player.attrs.audio.duration;
+        	// compute the percent already played
+        	playedTimePercent = player.attrs.audio.currentTime / player.attrs.audio.duration;
 	});
 
-    player.attrs.thumbBtn.addEventListener('touchmove',function (e) {
+    	player.attrs.thumbBtn.addEventListener('touchmove',function (e) {
 
+<<<<<<< HEAD
     	var touchObj = e.touches[0],
             deviationX = touchObj.clientX - thumbBtnStartX,
             add =  deviationX/totalLength,
@@ -132,18 +133,31 @@
 
         // set playing time
         player.attrs.nowTime.innerHTML = secToMin(moveToTime);
+=======
+    		var touchObj = e.touches[0],
+           	    deviationX = touchObj.clientX - thumbBtnStartX,
+           	    add =  deviationX/totalLength,
+           	    percent = (add+playedTimePercent)*100,
+            	    moveToTime =  player.attrs.audio.duration*percent/100;
+
+		// let the progressbar follow finger
+		player.attrs.progressBar.style.width = percent+'%';
+
+		// let the playing time follow finger
+		player.attrs.nowTime.innerHTML = secToMin(moveToTime);
+>>>>>>> 60c49e64397717b24d644dead6b81481a39424b6
 
 	});
 
-    player.attrs.thumbBtn.addEventListener('touchend',function (e) {
+    	player.attrs.thumbBtn.addEventListener('touchend',function (e) {
 
-    	//update to currentTime
-        var percent = parseFloat(player.attrs.progressBar.style.width);
-        player.attrs.audio.currentTime   = player.attrs.audio.duration*percent/100;
+		//update to currentTime
+		var percent = parseFloat(player.attrs.progressBar.style.width);
+		player.attrs.audio.currentTime   = player.attrs.audio.duration*percent/100;
 
-        // drag end show continue listen the timeupdate event
-        player.attrs.audio.addEventListener('timeupdate',updateUiByTime);
+		// drag end show continue listen the timeupdate event
+		player.attrs.audio.addEventListener('timeupdate',updateUiByTime);
 
-	});
+     	 });
 
 }
